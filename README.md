@@ -69,7 +69,7 @@ https://github.com/vedvkandge2000/QueryLens-RAG-Based-Chat-Application.git
   ```
   Now QueryLens in action! 🎮 Usage Chatbot Interface
 
-  * Navigate to the Chatbot, Upload your docuemnt and wait for application to process it. After uploading document click cross symbol to clear the document.
+  * Navigate to the Chatbot, Upload your document and wait for application to process it. After uploading document click clear symbol to clear the document.
   * Now your chatbot is ready, to answer any question regarding your document. Type your question about the document (e.g., "What is this text about?") Hit enter and wait for the AI-generated response.
 
 ## TODO
