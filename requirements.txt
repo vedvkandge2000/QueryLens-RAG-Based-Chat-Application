@@ -1,0 +1,19 @@
+streamlit>=1.18.0
+pinecone-client[grpc]>=2.2.4
+llama-index>=0.10.1
+llama-index-vector-stores-pinecone>=0.2.2
+llama-index-readers-file>=0.2.1
+llama-index-embeddings-huggingface>=0.1.6
+llama-index-llms-gemini>=0.1.0
+llama-index-embeddings-gemini
+
+# Additional libraries for handling API calls and data processing
+requests>=2.31.0
+pandas>=1.5.3
+
+# Ensure compatibility with Python versions
+python-dotenv>=1.0.0
+
+# Optional: Include Hugging Face Transformers if used for embeddings
+transformers>=4.33.2
+torch>=2.0.1
