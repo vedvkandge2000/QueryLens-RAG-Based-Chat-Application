@@ -1,4 +1,4 @@
-# QueryLens-RAG-Based-Chat-Application
+# QueryLens: RAG Based Chat Application
 QueryLens is an AI-powered tool that revolutionizes how developers/configurators interact with and understand documentations.
 
 ## Inspiration
