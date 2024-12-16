@@ -13,7 +13,7 @@ class DataLoader:
             while start < len(text):
                 end = min(start + max_chunk_size, len(text))
                 chunks.append(text[start:end])
-                start += max_chunk_size - overlap
+                start += (max_chunk_size - overlap)
             return chunks
 
     def load_data(self, filename="hnsw.pdf"):
@@ -29,20 +29,17 @@ class DataLoader:
         cleaned_docs = []
         for d in documents:
             cleaned_text = cleanData.clean_up_text(d.text)
+            
             d.text = cleaned_text
             cleaned_docs.append(d)
 
         #TODO: Add metadata depending on uploaded documents
-            # metadata_additions = {
-            #     "authors": ["Yu. A. Malkov", "D. A. Yashunin"],
-            #     "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs"
-            # }
-            # [cd.metadata.update(metadata_additions) for cd in cleaned_docs]
 
         processed_documents = []
         for doc in cleaned_docs:
-            chunks = self.split_text_with_overlap(doc.text, max_chunk_size=1024, overlap=20)
+            chunks = self.split_text_with_overlap(doc.text, max_chunk_size=512, overlap=50)
             for chunk in chunks:
+                print(len(chunk))
                 processed_documents.append({
                     "text": chunk,
                     "metadata": doc.metadata  # Retain metadata for each chunk

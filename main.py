@@ -3,12 +3,13 @@ import rag
 
 class RAGChatbot:
     def __init__(self):
-        pass
+        self.embed_model = init_pinecone.get_embed_model();
 
     def get_response(self, query, temperature, max_tokens):
         """Generate a response to the user's query."""
         try:
-            response = rag.query_rag(init_pinecone.initialize_pinecone(), init_pinecone.initialize_llm(temperature, max_tokens), init_pinecone.get_embed_model(),  query=query)
+            response = rag.query_rag(init_pinecone.initialize_pinecone(), init_pinecone.initialize_llm(temperature, max_tokens),  query=query)
+            
             return response
         except Exception as e:
             return f"Error generating response: {str(e)}"
@@ -25,7 +26,7 @@ class RAGChatbot:
         try:
             init_pinecone.reset_pinecone_index()
             print("Index resetted successfully")
-            init_pinecone.create_indexes(documents, init_pinecone.initialize_pinecone(), init_pinecone.get_embed_model())
+            init_pinecone.create_indexes(documents, init_pinecone.initialize_pinecone(), self.embed_model)
         except Exception as e:
             return [f"Error indexing documents: {str(e)}"]
 

@@ -6,13 +6,19 @@ from llama_index.core import StorageContext, VectorStoreIndex
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core import Settings
 from llama_index.llms.gemini import Gemini
-
+from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.llms.lmstudio import LMStudio
 
 pinecone_api_key = config.get_pinecone_api_key()
 
 def initialize_llm(temperature, max_tokens):
-    llm = Gemini(
-    model="models/gemini-1.5-flash", api_key=config.get_gemini_api_key(), max_tokens = max_tokens, temperature = temperature)
+    llm = LMStudio(
+        model_name="mathstral-7b-v0.1",
+        base_url="http://localhost:1234/v1",
+        temperature=temperature,
+        num_output=max_tokens
+    )
+    Settings.llm = llm
     return llm
 
 def initialize_pinecone():
@@ -34,7 +40,7 @@ def initialize_pinecone():
     while not pc.describe_index(index_name).status['ready']:
         time.sleep(5)
     index = pc.Index(index_name)
-    return index;
+    return index
 
 def reset_pinecone_index():
     index = initialize_pinecone()
@@ -45,18 +51,15 @@ def get_embed_model():
     embed_model = HuggingFaceEmbedding(
         model_name="BAAI/bge-small-en-v1.5"
     )
+    Settings.embed_model = embed_model
     return embed_model
 
 def create_indexes(documents, index, embed_model):
   
-    # Initialize VectorStore
     vector_store = PineconeVectorStore(pinecone_index=index)
-   
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
     
     # TODO: Update settings if required
-        # Settings.chunk_size = 256
-        # Settings.chunk_overlap = 20
     Settings.embed_model = embed_model
     
     # Create index with the new settings

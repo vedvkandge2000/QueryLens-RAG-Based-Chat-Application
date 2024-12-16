@@ -6,6 +6,7 @@ llama-index-readers-file>=0.2.1
 llama-index-embeddings-huggingface>=0.1.6
 llama-index-llms-gemini>=0.1.0
 llama-index-embeddings-gemini
+llama-index-llms-lmstudio
 
 # Additional libraries for handling API calls and data processing
 requests>=2.31.0
