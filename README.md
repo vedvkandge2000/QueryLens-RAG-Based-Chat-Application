@@ -32,9 +32,10 @@ The inspiration for QueryLens, a RAG-based chat application for document interac
   - Frontend: [Streamlit.io](https://streamlit.io)
   - Backend: Python, [Llamaindex.ai](https://www.llamaindex.ai)
   - AI/ML:
-    - [Pinecone](https://www.pinecone.io/) for vector storage
+    - [Pinecone](https://www.pinecone.io/) For vector storage
     - [Gemini](https://gemini.google.com)
-    - [HuggingFace](https://huggingface.co) for embedding model
+    - [HuggingFace](https://huggingface.co) For embedding model
+    - [LM Studio](https://lmstudio.ai/blog/lmstudio-v0.3.0) For runnning custom LLM on local
   - Version control: Git (via [pythonGit](https://gitpython.readthedocs.io/))
     
 ## 🏁 Getting Started
@@ -46,7 +47,8 @@ The inspiration for QueryLens, a RAG-based chat application for document interac
   - Pinecone
   - Streamlit
   - Git
-  - Gemini
+  - Gemini(Optional)
+  - LM Studio
 
   ### Installation
 
@@ -62,8 +64,11 @@ https://github.com/vedvkandge2000/QueryLens-RAG-Based-Chat-Application.git
      - Create Pinecone API
      - Create Gemini API
      - Create HuggingFace Token
+    
+  4. Load a model in LM studio and start local server.
+       - Update the model name and local server URL in initialize_llm() method.
        
-  4. Run the application
+  5. Run the application
   ```
   streamlit run app.py
   ```
@@ -75,6 +80,4 @@ https://github.com/vedvkandge2000/QueryLens-RAG-Based-Chat-Application.git
 ## TODO
   - Create chucks while indexing based on context.
   - Add chuck index specific metadata for each chuck.
-  - Integrate LLM model to use generated response and context, to create a response.
-  - Try better embedding models and LLM models.
 
