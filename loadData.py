@@ -29,7 +29,6 @@ class DataLoader:
         cleaned_docs = []
         for d in documents:
             cleaned_text = cleanData.clean_up_text(d.text)
-            
             d.text = cleaned_text
             cleaned_docs.append(d)
 
@@ -39,7 +38,6 @@ class DataLoader:
         for doc in cleaned_docs:
             chunks = self.split_text_with_overlap(doc.text, max_chunk_size=512, overlap=50)
             for chunk in chunks:
-                print(len(chunk))
                 processed_documents.append({
                     "text": chunk,
                     "metadata": doc.metadata  # Retain metadata for each chunk

@@ -21,8 +21,12 @@ def initialize_llm(temperature, max_tokens):
     Settings.llm = llm
     return llm
 
-def initialize_pinecone():
+def get_pinecone_instance():
     pc = Pinecone(api_key=pinecone_api_key)
+    return pc;
+
+def initialize_pinecone(pc):
+    
     index_name = "llama-integration-pinecone-v1"
     
     if not pc.has_index(index_name):
@@ -42,25 +46,23 @@ def initialize_pinecone():
     index = pc.Index(index_name)
     return index
 
-def reset_pinecone_index():
-    index = initialize_pinecone()
-    index.delete(delete_all=True)
+def reset_pinecone_index(pc):
+    index_name = "llama-integration-pinecone-v1"
+    if pc.has_index(index_name):
+        index = pc.Index(index_name)
+        index.delete(delete_all=True)
+        print("Index resetted successfully")
 
 def get_embed_model():
-    #TODO: Try better embedding model for better accuracy
     embed_model = HuggingFaceEmbedding(
         model_name="BAAI/bge-small-en-v1.5"
     )
     Settings.embed_model = embed_model
-    return embed_model
 
-def create_indexes(documents, index, embed_model):
+def create_indexes(documents, index):
   
     vector_store = PineconeVectorStore(pinecone_index=index)
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
-    
-    # TODO: Update settings if required
-    Settings.embed_model = embed_model
     
     # Create index with the new settings
     Vindex = VectorStoreIndex.from_documents(
