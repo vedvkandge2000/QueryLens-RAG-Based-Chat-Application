@@ -78,6 +78,6 @@ https://github.com/vedvkandge2000/QueryLens-RAG-Based-Chat-Application.git
   * Now your chatbot is ready, to answer any question regarding your document. Type your question about the document (e.g., "What is this text about?") Hit enter and wait for the AI-generated response.
 
 ## TODO
-  - Create chucks while indexing based on context.
-  - Add chuck index specific metadata for each chuck.
+  - Create chunks while indexing based on context.
+  - Add chunk index specific metadata for each chunk.
 
